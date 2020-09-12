@@ -32,8 +32,8 @@ RUN apk update && apk add --no-cache tor ca-certificates && \
     rm -rf /tmp/v2ray.tgz
     
 CMD nohup tor & \
-    sed -i "s/bot_token/${BOT_TOKEN}/g" /gd-utils/config.js  \
-    sed -i "s/your_tg_userid/${TG_UID}/g" /gd-utils/config.js  \
-    sed -i "s/DEFAULT_TARGET = ''/DEFAULT_TARGET = '${DEFAULT_TARGET}'/g" /gd-utils/config.js  \
+    sed -i "s/bot_token/${BOT_TOKEN}/g" ${WORKDIR}/gd-utils/config.js  \
+    sed -i "s/your_tg_userid/${TG_UID}/g" ${WORKDIR}/gd-utils/config.js  \
+    sed -i "s/DEFAULT_TARGET = ''/DEFAULT_TARGET = '${DEFAULT_TARGET}'/g" ${WORKDIR}/gd-utils/config.js  \
     pm2 start ${WORKDIR}/gd-utils/index.js & \
     v2ray -config $CONFIG
